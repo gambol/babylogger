@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/nursing"
             android:id="@+id/nursingText"
-            android:text="NURSING"
+            android:text="@string/choose_feed_type_nursing"
             android:textColor="@color/primary_blue"
             android:layout_centerHorizontal="true"
             />
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/bottle"
             android:id="@+id/bottleText"
-            android:text="BOTTLE"
+            android:text="@string/choose_feed_type_bottle"
             android:layout_centerHorizontal="true"
 
             android:textColor="@color/primary_blue"

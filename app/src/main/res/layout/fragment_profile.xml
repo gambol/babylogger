@@ -20,7 +20,7 @@
             style="@style/ListItemHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BASIC INFORMATION"
+            android:text="@string/basic_information"
             android:textAllCaps="true"
             android:textColor="@color/actionbar_background" />
 
@@ -66,7 +66,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:id="@+id/baby_name"
-                android:hint="Baby Name"
+                android:hint="@string/baby_name"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true" />
 
@@ -108,7 +108,7 @@
         style="@style/ListItemHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BIRTHDAY"
+        android:text="@string/baby_birthday"
         android:textAllCaps="true"
         android:textSize="16sp"
 
@@ -177,7 +177,7 @@
             android:id="@+id/skipBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Skip"
+            android:text="@string/txt_skip"
             android:background="#1E88E5"
             android:layout_weight="1"
             />
@@ -186,7 +186,7 @@
             android:id="@+id/save_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save"
+            android:text="@string/txt_save"
             android:background="#1E88E5"
             android:layout_weight="1"
             />

@@ -23,7 +23,7 @@
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/type_header"
         style="@style/ListItemHeader.Purple"
-        android:text="TYPE"
+        android:text="@string/diaper_change_type_title"
         android:textAllCaps="true"
         android:layout_below="@+id/header"
         />
@@ -99,7 +99,7 @@
             android:id="@+id/poop_type_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Loose"
+            android:text="@string/diaper_change_poppy_loose"
             android:textAllCaps="true"
             android:textSize="16sp"
             android:layout_centerHorizontal="true"
@@ -258,7 +258,7 @@
         android:layout_marginLeft = "15dp"
         android:ems="10"
         android:layout_below="@+id/accidentLayoutWrapper"
-        android:hint="NOTES"
+        android:hint="@string/diaper_notes_text"
         app:met_floatingLabel="normal"
         />
     <!--<EditText xmlns:android="http://schemas.android.com/apk/res/android"-->

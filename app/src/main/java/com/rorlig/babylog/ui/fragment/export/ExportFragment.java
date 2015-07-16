@@ -660,7 +660,7 @@ public class ExportFragment extends InjectableFragment implements AdapterView.On
         sendIntent.putExtra(android.content.Intent.EXTRA_EMAIL,
                 new String[]{"guptgaurav@gmail.com"});
 
-        startActivity(Intent.createChooser(sendIntent, "Send Email"));
+        startActivity(Intent.createChooser(sendIntent, "发送邮件"));
         getActivity().finish();
     }
 

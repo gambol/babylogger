@@ -35,6 +35,8 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
+// TODO 日期的工具可以提取出来，做一个工具类
+
 /**
  * Created by rorlig on 5/27/15.
  */
@@ -42,7 +44,6 @@ public class DateTimeHeaderFragment extends InjectableFragment {
     public enum DateTimeColor {
         GREEN, BLUE, PURPLE
     }
-
 
 
     @InjectView(R.id.currentDate)
@@ -57,8 +58,6 @@ public class DateTimeHeaderFragment extends InjectableFragment {
     Context context;
 
     private String TAG = "DateTimeHeader";
-
-
 
 
 //    public DateTimeHeader(Context context) {
@@ -100,12 +99,12 @@ public class DateTimeHeaderFragment extends InjectableFragment {
         super.onViewCreated(view, savedInstanceState);
         Time today = new Time(Time.getCurrentTimezone());
         today.setToNow();
-        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         currentDate.setText(sdf.format(new Date()));
-        sdf = new SimpleDateFormat("hh:mm aa");
+        sdf = new SimpleDateFormat("HH:mm");
         currentTime.setText(sdf.format(new Date()));
 
-        TypedArray a  = getParentFragment().getActivity().obtainStyledAttributes(R.styleable.DateTimeHeaderFragment);
+        TypedArray a = getParentFragment().getActivity().obtainStyledAttributes(R.styleable.DateTimeHeaderFragment);
 
         int color = a.getColor(R.styleable.DateTimeHeaderFragment_color_text, getResources().getColor(R.color.text_color_main));
         int my_integer = a.getColor(R.styleable.DateTimeHeaderFragment_my_int, -1);
@@ -124,19 +123,19 @@ public class DateTimeHeaderFragment extends InjectableFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.header_date_time, null);
+        View view = inflater.inflate(R.layout.header_date_time, null);
         ButterKnife.inject(this, view);
         return view;
     }
 
     @OnClick(R.id.currentTime)
-    public void onCurrentTimeClick(){
+    public void onCurrentTimeClick() {
         Log.d(TAG, "current time clicked");
         showTimePickerDialog();
     }
 
     @OnClick(R.id.currentDate)
-    public void onCurrentDateClick(){
+    public void onCurrentDateClick() {
         Log.d(TAG, "current date clicked");
         showDatePickerDialog();
     }
@@ -153,18 +152,14 @@ public class DateTimeHeaderFragment extends InjectableFragment {
     }
 
 
-
-
-
     private EventListener eventListener = new EventListener();
-
 
 
     /*
     * Register to events...
     */
     @Override
-    public void onStart(){
+    public void onStart() {
 
 
         super.onStart();
@@ -177,14 +172,12 @@ public class DateTimeHeaderFragment extends InjectableFragment {
      * Unregister from events ...
      */
     @Override
-    public void onStop(){
+    public void onStop() {
         super.onStop();
         Log.d(TAG, "onStop");
         scopedBus.unregister(eventListener);
 
     }
-
-
 
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -202,7 +195,7 @@ public class DateTimeHeaderFragment extends InjectableFragment {
             case GREEN:
                 currentDate.setTextColor(getResources().getColor(R.color.primary_green));
                 currentTime.setTextColor(getResources().getColor(R.color.primary_green));
-            break;
+                break;
             case BLUE:
                 currentDate.setTextColor(getResources().getColor(R.color.primary_blue));
                 currentTime.setTextColor(getResources().getColor(R.color.primary_blue));
@@ -225,37 +218,37 @@ public class DateTimeHeaderFragment extends InjectableFragment {
         }
 
         @Subscribe
-        public void onDateChanged(DateSetEvent dateSetEvent){
+        public void onDateChanged(DateSetEvent dateSetEvent) {
             Log.d(TAG, "dateSetEvent " + dateSetEvent);
-            SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 //            currentDateLong = dateSetEvent.getCalendar();
             currentDate.setText(sdf.format(dateSetEvent.getCalendar().getTime()));
         }
 
         @Subscribe
-        public void onTimeChanged(TimeSetEvent timeSetEvent){
+        public void onTimeChanged(TimeSetEvent timeSetEvent) {
             Log.d(TAG, "timeSetEvent " + timeSetEvent);
             currentTime.setText(timeSetEvent.getHourOfDay() + ":" + timeSetEvent.getMinute() + " " + (timeSetEvent.getHourOfDay() > 11 ? "PM" : "AM"));
         }
     }
 
     public Date getEventTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 //            currentDateLong = dateSetEvent.getCalendar();
         try {
-            long dayInMillis  = sdf.parse(currentDate.getText().toString()).getTime();
-            sdf = new SimpleDateFormat("hh:mm aa");
+            long dayInMillis = sdf.parse(currentDate.getText().toString()).getTime();
+            sdf = new SimpleDateFormat("HH:mm");
             long timeInMillis = sdf.parse(currentTime.getText().toString()).getTime();
             Calendar curr = Calendar.getInstance(TimeZone.getDefault());
             TimeZone z = TimeZone.getDefault();
             int offset = z.getRawOffset();
             Log.d(TAG, " rawoffset " + offset);
-            if(z.useDaylightTime()){
+            if (z.useDaylightTime()) {
                 Log.d(TAG, "in dst " + z.getDSTSavings());
                 offset = offset + z.getDSTSavings();
             }
             Log.d(TAG, "offset " + offset);
-            return new Date(dayInMillis+timeInMillis+offset);
+            return new Date(dayInMillis + timeInMillis + offset);
 
 //            if (TimeZone.getDefault().inDaylightTime(new Date())){
 //                return new Date(dayInMillis + timeInMillis + curr.get(Calendar.ZONE_OFFSET) + curr.get(Calendar.DST_OFFSET)).getDate();
@@ -266,7 +259,9 @@ public class DateTimeHeaderFragment extends InjectableFragment {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return null;
+
+        Log.d(TAG, "error, date is null");
+        return new Date();
     }
 
     /**
@@ -276,7 +271,7 @@ public class DateTimeHeaderFragment extends InjectableFragment {
     @Override
     public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) {
         super.onInflate(activity, attrs, savedInstanceState);
-        Log.v(TAG,"onInflate called " + getParentFragment());
+        Log.v(TAG, "onInflate called " + getParentFragment());
 
 //        TypedArray a = getParentFragment().onobtainStyledAttributes(attrs, R.styleable.DateTimeHeaderFragment);
 

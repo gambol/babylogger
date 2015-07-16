@@ -15,6 +15,7 @@ import com.ocpsoft.pretty.time.PrettyTime;
 import com.rorlig.babylog.R;
 import com.rorlig.babylog.dao.DiaperChangeDao;
 import com.rorlig.babylog.model.diaper.DiaperChangeEnum;
+import com.rorlig.babylog.model.diaper.DiaperIncident;
 import com.rorlig.babylog.ui.activity.InjectableActivity;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
@@ -65,7 +66,7 @@ public class DiaperChangeAdapter extends ArrayAdapter<DiaperChangeDao> {
         this.context = activity.getApplicationContext();
         ((InjectableActivity)activity).inject(this);
         prettyTime = new PrettyTime();
-        simpleDateFormat = new SimpleDateFormat("MMM d, ''yy h:mm a");
+        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         Log.d(TAG, "default time zone 0" + TimeZone.getDefault());
         simpleDateFormat.setTimeZone(TimeZone.getDefault());
 
@@ -99,11 +100,21 @@ public class DiaperChangeAdapter extends ArrayAdapter<DiaperChangeDao> {
 
         setPoopTexture(diaperChangeDao, viewHolder);
 
-        viewHolder.notesContent.setText(diaperChangeDao.getDiaperChangeNotes());
+        setNotesContent(diaperChangeDao, viewHolder);
+ //       viewHolder.notesContent.setText(diaperChangeDao.getDiaperChangeNotes());
 
 //        viewHolder.poopColor.setImageDrawable(co);
         return view;
     }
+
+    private void setNotesContent(DiaperChangeDao diaperChangeDao, ViewHolder viewHolder) {
+        if (diaperChangeDao.getDiaperChangeNotes() != null && diaperChangeDao.getDiaperChangeNotes().trim().length() > 0) {
+            viewHolder.notesContent.setText(diaperChangeDao.getDiaperChangeNotes());
+        } else {
+            viewHolder.row4.setVisibility(View.GONE);
+        }
+    }
+
 
     private void setPoopTexture(DiaperChangeDao diaperChangeDao, ViewHolder viewHolder) {
         if (diaperChangeDao.getPoopTexture()!=null) {
@@ -112,10 +123,12 @@ public class DiaperChangeAdapter extends ArrayAdapter<DiaperChangeDao> {
     }
 
     private void setDiaperIncidentType(DiaperChangeDao diaperChangeDao, ViewHolder viewHolder) {
-        if (diaperChangeDao.getDiaperChangeIncidentType()!=null) {
+        if (diaperChangeDao.getDiaperChangeIncidentType()!=null  && diaperChangeDao.getDiaperChangeIncidentType() != DiaperIncident.NONE) {
             viewHolder.incidentDetails.setText(diaperChangeDao.getDiaperChangeIncidentType().toString());
+        } else {
+            viewHolder.incidentDetails.setVisibility(View.GONE);
+            viewHolder.row3.setVisibility(View.GONE);
         }
-
     }
 
 
@@ -157,12 +170,17 @@ public class DiaperChangeAdapter extends ArrayAdapter<DiaperChangeDao> {
         if (diaperChangeDao.getDiaperChangeEventType()== DiaperChangeEnum.BOTH) {
             viewHolder.diaperWetChecked.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_action_tick_selected));
             viewHolder.diaperPoopChecked.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_action_tick_selected));
+
         } else if (diaperChangeDao.getDiaperChangeEventType()==DiaperChangeEnum.WET){
             viewHolder.diaperWetChecked.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_action_tick_selected));
-            viewHolder.diaperPoopChecked.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_action_tick_unselected));
+           // viewHolder.diaperPoopChecked.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_action_tick_unselected));
+            viewHolder.diaperPoopDisplay.setVisibility(View.GONE);
+            viewHolder.diaperPoopChecked.setVisibility(View.GONE);
             viewHolder.row2.setVisibility(View.GONE);
         } else {
-            viewHolder.diaperWetChecked.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_action_tick_unselected));
+            //viewHolder.diaperWetChecked.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_action_tick_unselected));
+            viewHolder.diaperWetDisplay.setVisibility(View.GONE);
+            viewHolder.diaperWetChecked.setVisibility(View.GONE);
             viewHolder.diaperPoopChecked.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_action_tick_selected));
         }
     }
@@ -198,8 +216,14 @@ public class DiaperChangeAdapter extends ArrayAdapter<DiaperChangeDao> {
         @InjectView(R.id.diaperWetChecked)
         ImageView diaperWetChecked;
 
+        @InjectView(R.id.diaperWetDisplay)
+        TextView diaperWetDisplay;
+
         @InjectView(R.id.diaperPoopChecked)
         ImageView diaperPoopChecked;
+
+        @InjectView(R.id.diaperPoopDisplay)
+        TextView diaperPoopDisplay;
 
         @InjectView(R.id.diaperChangeTime)
         TextView textViewTime;
@@ -219,6 +243,11 @@ public class DiaperChangeAdapter extends ArrayAdapter<DiaperChangeDao> {
         @InjectView(R.id.row2)
         LinearLayout row2;
 
+        @InjectView(R.id.row3)
+        LinearLayout row3;
+
+        @InjectView(R.id.row4)
+        LinearLayout row4;
 
 
         public ViewHolder(View view){

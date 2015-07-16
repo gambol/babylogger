@@ -105,27 +105,27 @@
 
 
     <string-array name="type_array">
-        <item>Milk</item>
-        <item>Formula</item>
-        <item>Water</item>
-        <item>Juice</item>
+        <item>母乳</item>
+        <item>配方奶</item>
+        <item>水</item>
+        <item>果汁</item>
     </string-array>
-    <string name="menu_item_diaper">Diaper Change</string>
-    <string name="menu_item_feeds">Feeding</string>
-    <string name="menu_item_growth">Growth</string>
-    <string name="menu_item_sleep">Sleep</string>
-    <string name="menu_item_development">Development</string>
-    <string name="menu_item_activity_log">Activity</string>
+    <string name="menu_item_diaper">换尿片</string>
+    <string name="menu_item_feeds">喂食</string>
+    <string name="menu_item_growth">发育</string>
+    <string name="menu_item_sleep">睡眠</string>
+    <string name="menu_item_development">成长</string>
+    <string name="menu_item_activity_log">活动</string>
     <string name="menu_item_stats">Stats</string>
-    <string name="menu_item_profile">Profile</string>
+    <string name="menu_item_profile">个人设置</string>
 
     <!-- items -->
     <string-array name="items">
-        <item>Diaper Change</item>
-        <item>Feeding</item>
-        <item>Growth</item>
-        <item>Milestones</item>
-        <item>Sleep</item>
+        <item>换尿片</item>
+        <item>喂食</item>
+        <item>发育</item>
+        <item>里程碑</item>
+        <item>睡眠</item>
     </string-array>
 
     <!-- items logos -->
@@ -148,26 +148,25 @@
 
     <!-- milestones -->
     <string-array name="milestones">
-        <item>Responds to voice</item>
-        <item>Smiles to parents</item>
-        <item>Lifts his head</item>
-        <item>Follows objects with eyes</item>
-        <item>Tries to touch objects</item>
-        <item>Starts to babble</item>
-        <item>Plays with Object</item>
-        <item>Sits with support</item>
-        <item>Sits without support</item>
-        <item>Searches for objects</item>
-        <item>Repeats Mama and dada</item>
-        <item>Responds to name</item>
-        <item>Stands with support</item>
-        <item>Stands without support</item>
-        <item>Eats puree</item>
-        <item>Eats solids</item>
+        <item>听得到声音</item>
+        <item>对着爸妈笑</item>
+        <item>抬头</item>
+        <item>眼睛会看物品</item>
+        <item>尝试去抓东西</item>
+        <item>发出声音</item>
+        <item>会玩东西</item>
+        <item>扶着坐下来</item>
+        <item>自己能坐起来</item>
+        <item>找东西</item>
+        <item>会叫爸爸妈妈</item>
+        <item>听得懂自己的名字</item>
+        <item>扶着能站起来</item>
+        <item>自己能站起来</item>
+        <item>能喝汤</item>
+        <item>吃硬东西</item>
         <item>Points to body parts</item>
-        <item>Walks</item>
-        <item>First tooth</item>
-        <item>Points to body parts</item>
+        <item>走</item>
+        <item>第一颗牙</item>
     </string-array>
 
 </resources>

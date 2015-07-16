@@ -64,7 +64,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="lbs"
+            android:text="g"
             android:layout_marginLeft="10dp"
             android:id="@+id/weight_pound_label"
             android:layout_centerVertical="true"

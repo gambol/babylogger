@@ -153,8 +153,6 @@ public class DiaperChangeListFragment extends InjectableFragment implements Adap
 
         scopedBus.post(new FragmentCreated("Diaper Change List"));
 
-
-
         babyORMLiteUtils = new BabyLoggerORMUtils(getActivity());
         try {
             queryBuilder = babyORMLiteUtils.getDiaperChangeDao().queryBuilder().orderBy("date", false).prepare();
@@ -179,10 +177,6 @@ public class DiaperChangeListFragment extends InjectableFragment implements Adap
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
-
     }
 
     private void setData(List<String[]> diaperChangeDaoList, DiaperChangeStatsType diaperChangeStatsType) {

@@ -105,7 +105,7 @@ public class DiaperChangeFragment extends InjectableFragment {
 
     DateTimeHeaderFragment dateTimeHeader;
 
-    private String[] poopDensityLabels = new String[]{"Loose", "Chunky", "Hard","Very Hard"};
+    private String[] poopDensityLabels = new String[]{"水状", "糊状", "比较干","非常干"};
 
 
 //    @InjectView(R.id.gridview)
@@ -247,6 +247,7 @@ public class DiaperChangeFragment extends InjectableFragment {
         DiaperIncident diaperIncident = getDiaperIncident();
         DiaperChangeColorType diaperChangeColorType = getDiaperColor();
         Date date = dateTimeHeader.getEventTime();
+
         try {
             diaperChangeDao = babyLoggerORMLiteHelper.getDiaperChangeDao();
             switch (diaperChangeType.getCheckedRadioButtonId()) {

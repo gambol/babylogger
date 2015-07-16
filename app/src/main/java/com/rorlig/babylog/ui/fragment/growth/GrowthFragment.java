@@ -286,6 +286,7 @@ public class GrowthFragment extends InjectableFragment {
         }
     }
 
+    // 保存发育记录
     @OnClick(R.id.save_btn)
     public void saveBtnClicked() {
         Dao<GrowthDao, Integer> growthDao;

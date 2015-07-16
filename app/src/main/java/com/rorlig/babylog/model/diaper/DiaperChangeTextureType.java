@@ -5,7 +5,7 @@ package com.rorlig.babylog.model.diaper;
  * Poop Texture
  */
 public enum DiaperChangeTextureType {
-    LOOSE("Loose"), SEEDY("Seedy"), CHUNKY("Chunky"), HARD("Hard");
+    LOOSE("水状"), SEEDY("糊状"), CHUNKY("比较干"), HARD("非常干");
 
     private final String value;
 
